@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: docker/build/Dockerfile
+    image: crn/centre-reveil:latest
+    container_name: crn-app-dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - crn-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  crn-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

@@ -1,0 +1,71 @@
+# Dependencies & Build
+node_modules/
+npm-debug.log
+npm-error.log
+yarn.lock
+.pnp
+
+# Production build
+dist/
+build/
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+coverage/
+.nyc_output/
+jest.config.js
+*.test.ts
+*.spec.ts
+*.test.tsx
+*.spec.tsx
+
+# Documentation
+README.md
+CHANGELOG.md
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+Jenkinsfile
+
+# Docker
+Dockerfile*
+.dockerignore
+docker-compose*.yml
+docker/
+
+# Kubernetes
+.kube/
+k8s/
+*.yaml
+*.yml
+
+# Other
+.editorconfig
+.prettierrc
+.eslintrc*
+tsconfig.json
+vite.config.ts
+tsconfig.node.json
+.husky/
