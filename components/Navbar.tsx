@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Flame } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
+import logoCrn from '../assets/logo_crn.png';
 
 const navItems: NavItem[] = [
   { label: 'Accueil', path: '/' },
@@ -36,12 +37,11 @@ export const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 group">
-          <div className="p-2 bg-brand-orange rounded-full group-hover:scale-110 transition-transform">
-            <Flame className="w-6 h-6 text-white" fill="white" />
-          </div>
-          <span className="text-2xl font-display font-bold tracking-tighter text-white">
-            CRN<span className="text-brand-orange">.</span>
-          </span>
+          <img 
+            src={logoCrn}
+            alt="Logo CRN" 
+            className="h-24 w-auto object-contain transition-transform duration-300 invert brightness-0"
+          />
         </NavLink>
 
         {/* Desktop Menu */}

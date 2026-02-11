@@ -65,7 +65,4 @@ k8s/
 .editorconfig
 .prettierrc
 .eslintrc*
-tsconfig.json
-vite.config.ts
-tsconfig.node.json
 .husky/

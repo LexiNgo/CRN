@@ -5,14 +5,26 @@ services:
     build:
       context: ../..
       dockerfile: docker/build/Dockerfile
-    image: crn/centre-reveil:latest
+      target: dependencies
+    image: crn/centre-reveil:dev
     container_name: crn-app-dev
+    command: ["npm", "run", "dev", "--", "--host"]
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: development
       LOG_LEVEL: debug
+      # Indispensable pour que le Hot Reload marche bien sur Windows/WSL
+      CHOKIDAR_USEPOLLING: "true" 
+      WATCHPACK_POLLING: "true"
     restart: unless-stopped
+    
+    volumes:
+      # 1. On monte la racine du projet (../..) dans le dossier /app du conteneur
+      - ../..:/app
+      # 2. On protège les node_modules du conteneur pour ne pas les écraser
+      - /app/node_modules
+
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
       interval: 30s

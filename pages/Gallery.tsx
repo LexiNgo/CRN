@@ -1,15 +1,18 @@
 import React from 'react';
 import { Section } from '../components/Section';
 import { Instagram } from 'lucide-react';
+import guitariste from '../assets/guitariste.webp';
+import assemblee from '../assets/assemblee.webp';
+import { a } from 'framer-motion/client';
 
 export const Gallery: React.FC = () => {
   // Using placeholder images for demonstration
   const images = [
     "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=800&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1507692049790-de58293a469d?q=80&w=800&auto=format&fit=crop",
+    assemblee,
     "https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=800&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop",
+    guitariste,
     "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop",
   ];
 
