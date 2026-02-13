@@ -1,7 +1,8 @@
 import React from 'react';
 import { Section } from '../components/Section';
 import { Quote } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Reveal } from '../components/motion/Reveal';
+import { Stagger } from '../components/motion/Stagger';
 import imagePasteurs from '../assets/pasteurs.webp';
 
 export const About: React.FC = () => {
@@ -9,14 +10,16 @@ export const About: React.FC = () => {
     <div className="pt-20">
       {/* Header */}
       <Section background="black" className="text-center">
-        <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Notre Vision</h1>
-        <p className="text-xl text-brand-orange font-bold uppercase tracking-widest">CRN Nantes</p>
+        <Reveal className="mx-auto max-w-3xl">
+          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Notre Vision</h1>
+          <p className="text-xl text-brand-orange font-bold uppercase tracking-widest">CRN Nantes</p>
+        </Reveal>
       </Section>
 
       {/* Visionaries */}
       <Section background="white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div className="order-2 lg:order-1">
+          <Reveal className="order-2 lg:order-1" direction="right">
             <h2 className="text-4xl font-display font-bold text-brand-black mb-8">Christian et Nelly Nana</h2>
             <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
               <p>
@@ -29,29 +32,34 @@ export const About: React.FC = () => {
                 Pour Christian et Nelly Nana, Jésus-Christ est l’unique chemin vers Dieu, et l’Église est appelée à être une lumière pour les nations à travers la puissance du Saint-Esprit. Leur engagement, leurs enseignements et leur vision inspirent les croyants à marcher dans le feu du réveil et à porter l’Évangile partout où Dieu les envoie.
               </p>
             </div>
-          </div>
-          <div className="order-1 lg:order-2">
+          </Reveal>
+          <Reveal className="order-1 lg:order-2" direction="left" delay={0.08}>
             <div className="relative">
-              {/* Placeholder for Leaders Image */}
-              <img 
-                src={imagePasteurs} 
-                alt="Christian et Nelly Nana" 
-                className="w-full h-auto object-cover rounded shadow-2xl"
-              />
+              <picture>
+                <source srcSet={imagePasteurs} type="image/webp" />
+                <img
+                  src={imagePasteurs}
+                  alt="Christian et Nelly Nana"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full rounded object-cover shadow-2xl"
+                />
+              </picture>
               <div className="absolute -bottom-8 -left-8 bg-brand-orange text-white p-6 hidden md:block">
                 <Quote className="w-8 h-8 mb-2" />
                 <p className="font-bold font-display text-lg">Une génération en feu.</p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       {/* Mission Statement */}
       <Section background="dark" className="text-center">
-        <div className="max-w-4xl mx-auto">
+        <Reveal className="max-w-4xl mx-auto" distance={12}>
           <h2 className="text-3xl font-display font-bold mb-12 text-white">Nos 4 Piliers Fondamentaux</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        </Reveal>
+        <Stagger className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
             <MissionCard 
               verse="Actes 1:8" 
               title="Réveiller" 
@@ -72,13 +80,12 @@ export const About: React.FC = () => {
               title="Communier" 
               desc="Cultiver la communion fraternelle, la prière et l'amour fraternel." 
             />
-          </div>
-        </div>
+        </Stagger>
       </Section>
 
       {/* Faith Declaration */}
       <Section background="black">
-         <div className="max-w-5xl mx-auto">
+         <Reveal className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-display font-bold mb-10 text-center">Ce que nous croyons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-gray-300">
                <ul className="space-y-4 list-disc list-inside marker:text-brand-orange">
@@ -94,14 +101,14 @@ export const About: React.FC = () => {
                  <li>Nous croyons à la résurrection des morts et à la vie éternelle.</li>
                </ul>
             </div>
-         </div>
+         </Reveal>
       </Section>
     </div>
   );
 };
 
 const MissionCard: React.FC<{ verse: string; title: string; desc: string }> = ({ verse, title, desc }) => (
-  <div className="bg-brand-black p-8 border border-white/5 hover:border-brand-orange transition-all duration-300 text-left group">
+  <div className="ui-card bg-brand-black p-8 border border-white/5 hover:border-brand-orange transition-all duration-300 text-left group">
     <span className="text-xs font-bold text-brand-orange tracking-widest uppercase mb-2 block">{verse}</span>
     <h3 className="text-2xl font-display font-bold text-white mb-3 group-hover:text-brand-orange transition-colors">{title}</h3>
     <p className="text-gray-400">{desc}</p>

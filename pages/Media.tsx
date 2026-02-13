@@ -3,6 +3,7 @@ import { Section } from '../components/Section';
 import { PlayCircle, Mic, FileText, Lock } from 'lucide-react';
 import { Button } from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+import { Reveal } from '../components/motion/Reveal';
 
 export const Media: React.FC = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const Media: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen flex flex-col">
       <Section background="dark" className="flex-grow flex items-center justify-center text-center">
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl" distance={12}>
           <div className="mb-8 flex justify-center space-x-4 opacity-50">
             <PlayCircle className="w-12 h-12 text-brand-orange" />
             <Mic className="w-12 h-12 text-white" />
@@ -29,7 +30,7 @@ export const Media: React.FC = () => {
               Retour à l'accueil
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Section>
     </div>
   );

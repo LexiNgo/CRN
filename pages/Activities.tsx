@@ -1,6 +1,8 @@
 import React from 'react';
 import { Section } from '../components/Section';
 import { BookOpen, Heart, Users, Zap, Mic2, Moon, Globe, Map } from 'lucide-react';
+import { Reveal } from '../components/motion/Reveal';
+import { Stagger } from '../components/motion/Stagger';
 
 const activities = [
   {
@@ -49,20 +51,20 @@ export const Activities: React.FC = () => {
   return (
     <div className="pt-20">
        <Section background="black" className="pb-12">
-        <div className="max-w-4xl mx-auto text-center">
+        <Reveal className="mx-auto max-w-4xl text-center" distance={12}>
           <h1 className="text-5xl font-display font-bold mb-6">Nos Activités & Ministères</h1>
           <p className="text-xl text-gray-400">
             Au CRN, nous sommes en action. Découvrez comment nous servons Dieu et comment vous pouvez vous impliquer.
           </p>
-        </div>
+        </Reveal>
       </Section>
 
       <Section background="dark">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" stagger={0.08}>
           {activities.map((activity, index) => (
             <div 
               key={index} 
-              className="group bg-brand-black p-8 border-b-4 border-transparent hover:border-brand-orange transition-all duration-300 shadow-lg"
+              className="ui-card group bg-brand-black p-8 border-b-4 border-transparent hover:border-brand-orange transition-all duration-300 shadow-lg"
             >
               <div className="mb-6 inline-block p-4 bg-brand-dark rounded-full group-hover:bg-brand-orange group-hover:text-white transition-colors text-brand-orange">
                 <activity.icon size={32} />
@@ -73,7 +75,7 @@ export const Activities: React.FC = () => {
               </p>
             </div>
           ))}
-        </div>
+        </Stagger>
       </Section>
     </div>
   );

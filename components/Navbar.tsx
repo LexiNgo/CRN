@@ -33,10 +33,16 @@ export const Navbar: React.FC = () => {
   }, [location]);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-black/95 backdrop-blur-sm border-b border-white/10 py-4' : 'bg-transparent py-6'}`}>
+    <nav
+      className={`fixed z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? 'border-b border-white/10 bg-brand-black/95 py-4 backdrop-blur-sm'
+          : 'bg-transparent py-6'
+      }`}
+    >
       <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 group">
+        <NavLink to="/" className="ui-interactive flex items-center gap-2 rounded-sm group" aria-label="Accueil CRN">
           <img 
             src={logoCrn}
             alt="Logo CRN" 
@@ -51,7 +57,9 @@ export const Navbar: React.FC = () => {
               key={item.path} 
               to={item.path}
               className={({ isActive }) => 
-                `text-sm font-bold uppercase tracking-widest hover:text-brand-orange transition-colors ${isActive ? 'text-brand-orange border-b-2 border-brand-orange pb-1' : 'text-white'}`
+                `ui-interactive rounded-sm text-sm font-bold uppercase tracking-widest hover:text-brand-orange focus-visible:ring-offset-brand-black ${
+                  isActive ? 'border-b-2 border-brand-orange pb-1 text-brand-orange' : 'text-white'
+                }`
               }
             >
               {item.label}
@@ -61,22 +69,34 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="lg:hidden text-white p-2"
+          type="button"
+          className="ui-interactive rounded-sm p-2 text-white lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
           {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-brand-black z-40 transform transition-transform duration-300 lg:hidden pt-24 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div
+        id="mobile-navigation"
+        aria-hidden={!isOpen}
+        className={`fixed inset-0 z-40 bg-brand-black pt-24 transition-transform duration-300 lg:hidden ${
+          isOpen ? 'translate-x-0' : 'pointer-events-none translate-x-full'
+        }`}
+      >
         <div className="flex flex-col items-center space-y-8 p-8">
           {navItems.map((item) => (
             <NavLink 
               key={item.path} 
               to={item.path}
               className={({ isActive }) => 
-                `text-2xl font-display font-bold uppercase ${isActive ? 'text-brand-orange' : 'text-white'}`
+                `ui-interactive rounded-sm px-2 text-2xl font-display font-bold uppercase ${
+                  isActive ? 'text-brand-orange' : 'text-white'
+                }`
               }
             >
               {item.label}
