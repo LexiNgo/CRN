@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-brand-black text-white font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand-orange text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-orange ring-offset-2 ring-offset-brand-black;
+  }
+}
+
+@layer components {
+  .ui-interactive {
+    @apply transition-all duration-200 ease-out active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .ui-link {
+    @apply ui-interactive underline-offset-4 hover:underline;
+  }
+
+  .ui-card {
+    @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ui-card {
+    transform: none !important;
+  }
+}
